@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAA - Servicios de Asesoría Académica</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        nav {
+            background: #2E3A59;
+            padding: 0.75rem 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            color: white;
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #F2A3A3;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #2E3A59;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2E3A59 0%, #A03C3C 100%);
+            color: white;
+            padding: 7rem 0 4rem;
+            text-align: center;
+            margin-top: 54px;
+        }
+
+        .hero-logo {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .hero h1 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover,
+        .cta-button:focus {
+            transform: scale(1.05);
+        }
+
+        .section-image {
+            width: 100%;
+            max-width: 900px;
+            height: 260px;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 2.5rem;
+            border-radius: 14px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            align-items: stretch;
+        }
+
+        .service-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #A03C3C;
+            text-align: left;
+        }
+
+        .service-card h3 {
+            color: #2E3A59;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding-left: 0;
+            text-align: center;
+        }
+
+        .service-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .service-card li:last-child {
+            border-bottom: none;
+        }
+
+        .how-it-works {
+            background: #f8f9fa;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            background: #A03C3C;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .testimonials {
+            background: #2E3A59;
+            color: white;
+        }
+
+        .testimonials h2 {
+            color: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author,
+        .testimonial-details {
+            text-align: center;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+        }
+
+        .faq-item {
+            background: #f8f9fa;
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            border-radius: 5px;
+            border-left: 4px solid #A03C3C;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #2E3A59;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-item p,
+        .about-content {
+            text-align: justify;
+        }
+
+        .contact-info {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-method {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #A03C3C;
+        }
+
+        .contact-method h3 {
+            color: #2E3A59;
+            margin-bottom: 1rem;
+        }
+
+        .contact-method a {
+            color: #A03C3C;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-method a:hover,
+        .contact-method a:focus {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #D9D9D9;
+        }
+
+        .social-links a {
+            color: #A03C3C;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover,
+        .social-links a:focus {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #2E3A59;
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #F2A3A3;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover,
+        .footer-section a:focus {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.7rem 1rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #2E3A59;
+                padding: 0.75rem 0;
+                flex-direction: column;
+                gap: 0;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                width: 100%;
+                text-align: center;
+                padding: 0.6rem 0;
+            }
+
+            .hero {
+                margin-top: 52px;
+                padding: 4rem 1rem 3rem;
+            }
+
+            .hero-logo {
+                width: 135px;
+                height: 135px;
+                margin: 0.5rem auto 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+                line-height: 1.55;
+            }
+
+            .cta-button {
+                padding: 0.85rem 1.2rem;
+                font-size: 1rem;
+            }
+
+            .section-image {
+                height: 190px;
+                margin-bottom: 2rem;
+            }
+
+            .steps,
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#inicio" class="nav-logo">SAA</a>
+
+            <button
+                class="menu-toggle"
+                aria-label="Abrir menú"
+                aria-expanded="false">
+                ☰
+            </button>
+
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Nuestros servicios</a></li>
+                <li><a href="#como-funciona">Cómo funciona</a></li>
+                <li><a href="#nosotros">Sobre nosotros</a></li>
+                <li><a href="#testimonios">Casos de éxito</a></li>
+                <li><a href="#faq">Preguntas frecuentes</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="inicio">
+        <div class="container">
+            <img
+                src="https://scontent.flov1-1.fna.fbcdn.net/v/t39.30808-6/509424144_122162248106562615_5562546317731855462_n.jpg?stp=dst-jpg_tt6&cstp=mx2000x2000&ctp=s2000x2000&_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Athd7a8SWxUQ7kNvwEEsS2m&_nc_oc=Adr2z8ArlZkA5LNGNCkdpYjGDtPTCpAP9ZMx0xTe9isi3Ho9jICWrDn1OgFmkM4ExPNVOzvybkwAVDcB1Tbw6MqF&_nc_zt=23&_nc_ht=scontent.flov1-1.fna&_nc_gid=Ucu-CLdOcLvkPe_OsMVdRA&_nc_ss=782a8&oh=00_AQIxRIK15jMM-abgfm5kJ2QErK4BHCj7WymPFiC_uHKqkg&oe=6AA20E39"
+                alt="SAA - Servicios de Asesoría Académica"
+                class="hero-logo">
+
+            <h1>Servicios de Asesoría Académica</h1>
+
+            <p>
+                Somos una agencia especializada en acompañar estudiantes universitarios
+                y de posgrado en el desarrollo de tesis, tesinas y proyectos de investigación.
+                <br><br>
+                Te enseñamos, orientamos y revisamos tu trabajo para que alcances tus metas
+                académicas con confianza.
+            </p>
+
+            <a
+                href="https://wa.me/525951094000?text=Hola%2C%20me%20interesa%20solicitar%20una%20asesor%C3%ADa%20acad%C3%A9mica"
+                class="cta-button">
+                📱 Solicitar asesoría por WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <section id="servicios">
+        <div class="container">
+            <h2>Nuestros servicios</h2>
+
+            <img
+                src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1400&q=80"
+                alt="Libros y materiales para estudiar"
+                class="section-image">
+
+            <div class="services-grid">
+
+                <div class="service-card">
+                    <h3>💻 Tecnología y programación</h3>
+                    <ul>
+                        <li>Java</li>
+                        <li>CSS</li>
+                        <li>HTML</li>
+                        <li>SQL</li>
+                        <li>Node.js</li>
+                        <li>Android</li>
+                        <li>JSON</li>
+                        <li>NoSQL</li>
+                        <li>Python</li>
+                        <li>C++</li>
+                        <li>PHP</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>📚 Idiomas y humanidades</h3>
+                    <ul>
+                        <li>Inglés avanzado</li>
+                        <li>Filosofía y lógica</li>
+                        <li>Historia</li>
+                        <li>Geografía</li>
+                        <li>Español</li>
+                        <li>Ensayos y trabajos escritos</li>
+                        <li>Monografías</li>
+                        <li>Derecho</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>📐 Ciencias exactas</h3>
+                    <ul>
+                        <li>Física y química</li>
+                        <li>Probabilidad y estadística</li>
+                        <li>Cálculo integral y diferencial</li>
+                        <li>Álgebra y geometría</li>
+                        <li>Economía y finanzas</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>🎨 Diseño y contenido</h3>
+                    <ul>
+                        <li>Canva: infografías, diagramas y mapas mentales</li>
+                        <li>Videos y creación de contenido</li>
+                        <li>Paquetería Office</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>👥 Administración y proyectos</h3>
+                    <ul>
+                        <li>Recursos humanos</li>
+                        <li>Tesis</li>
+                        <li>Tesinas</li>
+                        <li>Monografías</li>
+                        <li>Reportes de estancias profesionales</li>
+                        <li>Reportes de servicio social</li>
+                        <li>Ensayos para titulación</li>
+                        <li>Orientación para proyectos académicos</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>📊 Análisis estadístico</h3>
+                    <ul>
+                        <li>SPSS</li>
+                        <li>Jamovi</li>
+                        <li>Statgraphics</li>
+                        <li>OriginPro</li>
+                        <li>Análisis estadístico</li>
+                        <li>Interpretación de resultados estadísticos</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: #fff3cd; border-radius: 10px; border-left: 4px solid #A03C3C;">
+                <h3>⚖️ Aviso ético</h3>
+
+                <p>
+                    Nuestra agencia enseña, orienta, revisa y acompaña.
+                    <br>
+                    <strong>
+                        Brindamos apoyo académico personalizado de acuerdo con las necesidades de cada estudiante.
+                    </strong>
+                    <br>
+                    Nuestro compromiso es con la integridad académica y el aprendizaje genuino de cada estudiante.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="como-funciona">
+        <div class="container">
+            <h2>Cómo funciona</h2>
+
+            <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80"
+                alt="Estudiantes colaborando en un proyecto"
+                class="section-image">
+
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+                Un proceso sencillo y transparente que genera confianza:
+            </p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Envía tu solicitud</h3>
+                    <p>El estudiante envía su solicitud y material inicial.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Revisión del caso</h3>
+                    <p>La agencia revisa el caso y agenda videollamada para más detalles, si es necesario.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Propuesta personalizada</h3>
+                    <p>Se entrega una propuesta con alcance, plazo y precio.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Asesoría o revisión</h3>
+                    <p>Se realiza la asesoría o revisión según lo acordado.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Entrega con observaciones</h3>
+                    <p>Se entrega el material con observaciones detalladas.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <h3>Ronda de aclaraciones</h3>
+                    <p>Se ofrece una ronda de aclaraciones, si corresponde.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros">
+        <div class="container">
+            <h2>Sobre nosotros</h2>
+
+            <img
+                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1400&q=80"
+                alt="Persona impartiendo una asesoría académica"
+                class="section-image">
+
+            <div class="about-content" style="max-width: 900px; margin: 0 auto;">
+                <h3>Historia y propósito</h3>
+
+                <p style="margin-bottom: 1.5rem;">
+                    Nuestra agencia nació con el propósito de acompañar a estudiantes en uno
+                    de los momentos más importantes de su vida académica: el desarrollo de
+                    su tesis o proyecto de investigación. Creemos que cada estudiante merece
+                    orientación profesional, ética y personalizada.
+                </p>
+
+                <h3>Nuestro equipo</h3>
+
+                <p style="margin-bottom: 1.5rem;">
+                    Contamos con un equipo de asesores con formación de posgrado, incluyendo
+                    maestrías y doctorados, y amplia experiencia en metodología de la investigación,
+                    redacción académica y análisis de datos. Nuestras áreas de especialización
+                    incluyen ciencias sociales, educación, administración, ingenierías, salud,
+                    idiomas, derecho y humanidades.
+                </p>
+
+                <h3>Nuestros valores</h3>
+
+                <ul style="margin-bottom: 1.5rem; padding-left: 2rem;">
+                    <li><strong>Confidencialidad:</strong> Tu información y trabajo están protegidos.</li>
+                    <li><strong>Responsabilidad:</strong> Cumplimos con los plazos acordados.</li>
+                    <li><strong>Puntualidad:</strong> Respetamos tu tiempo y el nuestro.</li>
+                    <li><strong>Ética académica:</strong> Promovemos el aprendizaje genuino.</li>
+                </ul>
+
+                <h3>Límites del servicio</h3>
+
+                <p>
+                    Brindamos asesoría, orientación y revisión. No garantizamos calificaciones
+                    específicas ni sustituimos la relación entre el estudiante y su asesor institucional.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonios">
+        <div class="container">
+            <h2>Casos de éxito</h2>
+
+            <img
+                src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1400&q=80"
+                alt="Escritorio con computadora y materiales de trabajo"
+                class="section-image">
+
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>
+                        "Gracias a la asesoría metodológica pude estructurar correctamente
+                        mi tesis de maestría. Las sesiones fueron muy claras y el equipo
+                        siempre estuvo disponible para resolver mis dudas."
+                    </p>
+                    <p class="testimonial-author">— María G., Maestría en Educación</p>
+                    <p class="testimonial-details">
+                        Tipo de ayuda: Orientación metodológica cuantitativa
+                    </p>
+                </div>
+
+                <div class="testimonial">
+                    <p>
+                        "La revisión integral de mi proyecto de investigación me ayudó a
+                        identificar errores que no había visto. Las observaciones fueron
+                        muy detalladas y constructivas."
+                    </p>
+                    <p class="testimonial-author">— Carlos R., Licenciatura en Administración</p>
+                    <p class="testimonial-details">
+                        Tipo de ayuda: Revisión de estructura y formato APA
+                    </p>
+                </div>
+
+                <div class="testimonial">
+                    <p>
+                        "El acompañamiento mensual fue clave para terminar mi tesis a tiempo.
+                        Tener sesiones semanales me mantuvo enfocada y el soporte por WhatsApp
+                        fue invaluable."
+                    </p>
+                    <p class="testimonial-author">— Ana L., Doctorado en Psicología</p>
+                    <p class="testimonial-details">
+                        Tipo de ayuda: Acompañamiento mensual completo
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container">
+            <h2>Preguntas frecuentes</h2>
+
+            <img
+                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80"
+                alt="Persona trabajando en una computadora"
+                class="section-image">
+
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div class="faq-item">
+                    <div class="faq-question">¿Cuál es la modalidad de las asesorías?</div>
+                    <p>
+                        Las asesorías se realizan de forma virtual mediante videollamada
+                        (Zoom, Google Meet o WhatsApp). También ofrecemos revisión de documentos
+                        por correo electrónico o plataforma segura.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">¿Cuáles son los plazos de entrega?</div>
+                    <p>
+                        Los plazos varían según el servicio: revisiones básicas (5 días hábiles),
+                        revisiones integrales (10 días hábiles) y acompañamiento mensual según
+                        el cronograma acordado. Siempre entregamos en la fecha comprometida.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">¿Qué formas de pago aceptan?</div>
+                    <p>
+                        Aceptamos transferencia bancaria, PayPal, tarjeta de crédito o débito,
+                        Aplazo y, en algunas ubicaciones, efectivo. Las condiciones de pago
+                        se establecen según el plan acordado.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">¿Cuál es la política de cambios?</div>
+                    <p>
+                        Cada plan incluye un número específico de rondas de aclaraciones,
+                        de una a dos según el servicio. Los cambios sustanciales fuera del
+                        alcance acordado pueden requerir un presupuesto adicional.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">¿Cómo garantizan la confidencialidad?</div>
+                    <p>
+                        Tu información y trabajo están protegidos bajo estricta confidencialidad.
+                        No compartimos tu identidad ni tu trabajo con terceros. Puedes solicitar
+                        un acuerdo de confidencialidad si lo requieres.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">¿Cuántas revisiones están incluidas?</div>
+                    <p>
+                        Depende del plan: la Revisión Básica incluye una ronda, la Revisión Integral
+                        incluye dos rondas y el Acompañamiento Mensual incluye revisiones continuas.
+                        Las rondas adicionales pueden cotizarse por separado.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">¿Qué áreas y niveles académicos atienden?</div>
+                    <p>
+                        Atendemos desde licenciatura hasta doctorado en áreas como educación,
+                        ciencias sociales, administración, ingenierías, salud, idiomas, derecho,
+                        humanidades y más. Si tu área no está listada, contáctanos para evaluar
+                        tu caso.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        ¿Qué información debo enviar al solicitar asesoría?
+                    </div>
+                    <p>
+                        Nombre completo, país, nivel académico, carrera, tipo de asesoría necesaria,
+                        fecha límite, estado actual del trabajo, indicaciones de tu institución y,
+                        si es posible, el documento o avance actual.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">¿Qué servicios no realiza la agencia?</div>
+                    <p>
+                        No garantizamos calificaciones específicas ni sustituimos la relación
+                        con tu asesor institucional. Nuestro rol es enseñar, orientar y revisar.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" style="background: #f8f9fa;">
+        <div class="container">
+            <h2>Contacto</h2>
+
+            <div class="contact-info">
+                <img
+                    src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=80"
+                    alt="Equipo reunido para colaborar"
+                    class="section-image">
+
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+                    Contáctanos a través de cualquiera de nuestros canales disponibles:
+                </p>
+
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <h3>📱 WhatsApp</h3>
+                        <p style="margin-bottom: 1rem;">
+                            Atención rápida y personalizada
+                        </p>
+                        <a
+                            href="https://wa.me/525951094000?text=Hola%2C%20me%20interesa%20solicitar%20una%20asesor%C3%ADa%20acad%C3%A9mica"
+                            style="font-size: 1.2rem;">
+                            +52 1 595 109 4000
+                        </a>
+                    </div>
+
+                    <div class="contact-method">
+                        <h3>📧 Correo electrónico</h3>
+                        <p style="margin-bottom: 1rem;">
+                            Respondemos en menos de 24 horas
+                        </p>
+                        <a
+                            href="mailto:sinalvaamb@gmail.com"
+                            style="font-size: 1.1rem;">
+                            sinalvaamb@gmail.com
+                        </a>
+                    </div>
+
+                    <div class="contact-method">
+                        <h3>🕐 Horario de atención</h3>
+                        <p style="margin-bottom: 0.5rem;">
+                            <strong>Lunes a domingo:</strong>
+                        </p>
+                        <p>9:00 AM - 8:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <h3 style="margin-bottom: 1.5rem;">
+                        Síguenos en redes sociales
+                    </h3>
+
+                    <div>
+                        <a
+                            href="https://www.facebook.com/share/1Bjv3f9zzZ/"
+                            target="_blank"
+                            rel="noopener">
+                            Facebook
+                        </a>
+                        |
+                        <a
+                            href="https://www.instagram.com/invites/contact/?igsh=vylbjkq6mp0h&utm_content=bfxuvea&igsi=vylbjkq6mp0h"
+                            target="_blank"
+                            rel="noopener">
+                            Instagram
+                        </a>
+                        |
+                        <a
+                            href="https://tiktok.com/@saa.servicios.de"
+                            target="_blank"
+                            rel="noopener">
+                            TikTok
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>SAA - Servicios de Asesoría Académica</h3>
+                    <p>
+                        Acompañamos estudiantes en su proceso de tesis y proyectos
+                        de investigación con orientación profesional, ética y personalizada.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Enlaces rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#servicios">Nuestros servicios</a></li>
+                        <li><a href="#como-funciona">Cómo funciona</a></li>
+                        <li><a href="#nosotros">Sobre nosotros</a></li>
+                        <li><a href="#testimonios">Casos de éxito</a></li>
+                        <li><a href="#faq">Preguntas frecuentes</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Servicios principales</h3>
+                    <ul>
+                        <li>Asesoría para tesis</li>
+                        <li>Revisión de documentos</li>
+                        <li>Orientación metodológica</li>
+                        <li>Corrección de estilo</li>
+                        <li>Análisis estadístico</li>
+                        <li>Preparación para defensa</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>📱 WhatsApp: +52 595 109 4000</li>
+                        <li>📧 Email: sinalvaamb@gmail.com</li>
+                        <li>🕐 Lun-Dom: 9AM-8PM</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #3E4A6B;">
+                <p>
+                    &copy; 2026 SAA - Servicios de Asesoría Académica.
+                    Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('nav ul');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = navMenu.classList.toggle('active');
+
+            menuToggle.setAttribute('aria-expanded', isOpen);
+            menuToggle.setAttribute(
+                'aria-label',
+                isOpen ? 'Cerrar menú' : 'Abrir menú'
+            );
+
+            menuToggle.textContent = isOpen ? '✕' : '☰';
+        });
+
+        document.querySelectorAll('nav ul a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Abrir menú');
+                menuToggle.textContent = '☰';
+            });
+        });
+    </script>
+
+</body>
+</html>
